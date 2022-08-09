@@ -26,7 +26,7 @@ export function HomepageContent() {
     const [review, setReview] = useState(false);
     const [audit, setAudit] = useState(false);
 
-    const {oktaAuth} = useOktaAuth();
+    // const {oktaAuth} = useOktaAuth();
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -59,46 +59,46 @@ export function HomepageContent() {
     }
 
     const login = async () => {
-        if (oktaAuth.isLoginRedirect()) {
-            await oktaAuth.handleLoginRedirect();
-        } else if (!await oktaAuth.isAuthenticated()) {
-            // Start the browser based oidc flow, then parse tokens from the redirect callback url
-            oktaAuth.signInWithRedirect();
-        }
+        // if (oktaAuth.isLoginRedirect()) {
+        //     await oktaAuth.handleLoginRedirect();
+        // } else if (!await oktaAuth.isAuthenticated()) {
+        //     // Start the browser based oidc flow, then parse tokens from the redirect callback url
+        //     oktaAuth.signInWithRedirect();
+        // }
     }
 
     const secinfo = async () => {
 
-        const userInfo: IUserInfo = {
-            token: "",
-            user: "",
+        // const userInfo: IUserInfo = {
+        //     token: "",
+        //     user: "",
 
-            requester: false,
-            reviewer: false,
-            auditor: false,
+        //     requester: false,
+        //     reviewer: false,
+        //     auditor: false,
 
-            accountMap: new Map([])
-        }
+        //     accountMap: new Map([])
+        // }
 
-        const claims = await oktaAuth.getUser();
-        userInfo.user = claims.email ? claims.email : "";
-        userInfo.accountMap = createAccountMap(claims.groups);
+        // const claims = await oktaAuth.getUser();
+        // userInfo.user = claims.email ? claims.email : "";
+        // userInfo.accountMap = createAccountMap(claims.groups);
 
-        const tokenManager = oktaAuth.tokenManager;
-        const accessToken = await tokenManager.get('accessToken');
-        const idToken = await tokenManager.get('idToken');
-        if ("accessToken" in accessToken && "idToken" in idToken) {
-            const authorization_value1 = 'Bearer '.concat(accessToken.accessToken ? accessToken.accessToken : "");
-            const authorization_value2 = authorization_value1.concat(' ');
-            const authorization_value3 = authorization_value2.concat(idToken.idToken ? idToken.idToken : "");
+        // const tokenManager = oktaAuth.tokenManager;
+        // const accessToken = await tokenManager.get('accessToken');
+        // const idToken = await tokenManager.get('idToken');
+        // if ("accessToken" in accessToken && "idToken" in idToken) {
+        //     const authorization_value1 = 'Bearer '.concat(accessToken.accessToken ? accessToken.accessToken : "");
+        //     const authorization_value2 = authorization_value1.concat(' ');
+        //     const authorization_value3 = authorization_value2.concat(idToken.idToken ? idToken.idToken : "");
 
-            userInfo.token = authorization_value3;
-        }
+        //     userInfo.token = authorization_value3;
+        // }
 
-        userInfo.requester = request;
-        userInfo.reviewer = review;
-        userInfo.auditor = audit;
-        dispatch(storeUserInfoAction(userInfo));
+        // userInfo.requester = request;
+        // userInfo.reviewer = review;
+        // userInfo.auditor = audit;
+        // dispatch(storeUserInfoAction(userInfo));
     }
 
     const onOpenClick = () => {
