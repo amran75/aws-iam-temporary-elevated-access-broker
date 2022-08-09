@@ -28,12 +28,12 @@ const App = () => {
   //   .catch(err => setError(err))
   // },[])
 
-  useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then(response => response.json())
-    .then(res => console.log(res.slice(0,10)))
-    .catch(err => setError(err))
-  },[])
+  // useEffect(()=>{
+  //   fetch('https://jsonplaceholder.typicode.com/todos')
+  //   .then(response => response.json())
+  //   .then(res => console.log(res.slice(0,10)))
+  //   .catch(err => setError(err))
+  // },[])
 
   // const oktaAuth = new OktaAuth({
   //   issuer: 'https://<yourOktaDomain>/oauth2/default', // NOTE: Replace with the URL of the authorization server that will perform authentication

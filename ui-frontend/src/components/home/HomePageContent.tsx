@@ -68,7 +68,7 @@ export function HomepageContent() {
     }
 
     const secinfo = async () => {
-
+        getAccountManagerInfo()
         // const userInfo: IUserInfo = {
         //     token: "",
         //     user: "",
@@ -118,11 +118,29 @@ export function HomepageContent() {
         }
     }
 
+    const getAccountManagerInfo = async () => {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+          }).then(response => response.json()).then(res => console.log(res.slice(0,5)))
+        // console.log("Response",response)
+        // const result =  await fetch('https://jsonplaceholder.typicode.com/todos')
+        //   .then(response => response.json())
+        //   .then(res => console.log(res.slice(0,10)))
+        //   console.log("Result",result)
+        
+    }
+
+
+    
+
     useEffect(() => {
         login().then(r => {
         });
         secinfo().then(r => {
         });
+        // getAccountManagerInfo().then(r => {
+        // });
     });
 
     return (
