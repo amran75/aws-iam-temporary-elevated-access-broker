@@ -17,6 +17,8 @@ export default class ApiHandler {
   }
 
   private get_resource_url(resource_name: string) {
+      let a = this.api_ep + "/" + resource_name;
+      console.log(a)
       return this.api_ep + "/" + resource_name
   }
 
@@ -55,6 +57,44 @@ export default class ApiHandler {
         const error_message:string = await response.json();
         throw new Error(error_message);
       }
+      return response.json() as Promise<T>;
+    }
+    else {
+      console.log("error calling get_resource, resource name not configured!");
+      return Promise.reject<T>();
+    }
+  }
+
+  public async get_authorized_resource_new<T>(resource_name: string, token: string, apiMethod:ApiMethod, body_params?:any, url_params?:KeyValue<string,string>[]) : Promise<T> {
+
+    // console.log(resource_name)
+    // console.log(token)
+    // console.log(apiMethod)
+    if (this._resources.indexOf(resource_name)>-1) {
+
+      let url = this.get_resource_url(resource_name)
+      if (url_params) {
+        let url_params_text = this.to_url_params(url_params)
+        if (url_params_text !== "") {
+          url = url + "?" + this.to_url_params(url_params)
+        }
+      }
+      const response = await fetch(url,
+          {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'x-api-key': this.authToken,
+              'Authorization': token
+            },
+            method: apiMethod,
+            body: body_params==null? null : JSON.stringify(body_params),
+            mode: 'cors'
+          });
+      // if (!response.ok) {
+      //   const error_message:string = await response.json();
+      //   throw new Error(error_message);
+      // }
       return response.json() as Promise<T>;
     }
     else {

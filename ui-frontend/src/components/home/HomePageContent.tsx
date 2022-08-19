@@ -6,6 +6,8 @@ import TEA from "./TEA.png";
 import {useOktaAuth} from "@okta/okta-react";
 import {IUserInfo} from "../../interfaces";
 import {useDispatch} from "react-redux";
+import {IRequest, ReduxRoot} from "../../interfaces";
+import {getAllData} from "../../data";
 
 import {
     storeUserInfoAction
@@ -119,16 +121,26 @@ export function HomepageContent() {
     }
 
     const getAccountManagerInfo = async () => {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-          }).then(response => response.json()).then(res => console.log(res))
+        // const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
+        //     method: 'GET',
+        //     headers: {'Content-Type': 'application/json'}
+        //   }).then(response => response.json()).then(res => console.log(res))
         
-        // console.log("Response",response)
-        // const result =  await fetch('https://jsonplaceholder.typicode.com/todos')
-        //   .then(response => response.json())
-        //   .then(res => console.log(res.slice(0,10)))
-        //   console.log("Result",result)
+    
+            try {
+                let token ="";
+              
+                await getAllData(token,{}).then(
+                    (result: IRequest[]) => {
+                    //return result;
+                    console.log(result)
+                    });
+             
+            }
+            catch (err) {
+               console.log(err)
+            }
+          
         
     }
 

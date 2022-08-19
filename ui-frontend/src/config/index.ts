@@ -4,3 +4,9 @@ export const BG_ENDPOINTS = {
     Endpoint: 'https://<CloudFrontURL>/<APIStage>', // NOTE: Replace with the URL of your CloudFront distribution and API stage
     Resources : ['get_requests', 'get_pending_requests', 'get_processed_requests', 'get_all_requests', 'create_request', 'delete_request', 'approve_request', 'reject_request', 'federate_console', 'federate_cli']
 };
+
+export const BG__ENDPOINTS_NEW = {
+    ApiKey: '<ApiKey>', // NOTE: Replace with your API Gateway key value
+    Endpoint: 'https://jsonplaceholder.typicode.com', // NOTE: Replace with the URL of your CloudFront distribution and API stage
+    Resources : ['todos','get_requests', 'get_pending_requests', 'get_processed_requests', 'get_all_requests', 'create_request', 'delete_request', 'approve_request', 'reject_request', 'federate_console', 'federate_cli']
+};

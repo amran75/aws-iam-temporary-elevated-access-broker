@@ -1,11 +1,16 @@
 import ApiHandler, {ApiMethod} from '../common/api'
 import {IRequest, ICredential} from '../interfaces/index'
-import {BG_ENDPOINTS} from '../config/index'
-
+import {BG_ENDPOINTS,BG__ENDPOINTS_NEW} from '../config/index'
 export const api = new ApiHandler(
     BG_ENDPOINTS.Endpoint,
     BG_ENDPOINTS.ApiKey,
     BG_ENDPOINTS.Resources
+);
+
+export const new_api = new ApiHandler(
+    BG__ENDPOINTS_NEW.Endpoint,
+    BG__ENDPOINTS_NEW.ApiKey,
+    BG__ENDPOINTS_NEW.Resources
 );
 
 export const getRequests = (token: string, user_params?:any) => api.get_authorized_resource<IRequest[]>(
@@ -40,3 +45,8 @@ export const invokeFederateConsole = (token: string, account:any, role:any, user
 
 export const invokeFederateCli = (token: string, account:any, role:any, user_params?:any) => api.get_authorized_resource<ICredential>(
     "federate_cli", token, ApiMethod.GET,null,[{key:"account", value:account}, {key:"role", value:role}])
+
+
+export const getAllData = (token: string, user_params?:any) => new_api.get_authorized_resource_new<IRequest[]>(
+        "todos", token, ApiMethod.GET,null,[])
+    
