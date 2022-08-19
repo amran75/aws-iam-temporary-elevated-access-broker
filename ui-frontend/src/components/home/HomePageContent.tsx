@@ -122,7 +122,8 @@ export function HomepageContent() {
         const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
-          }).then(response => response.json()).then(res => console.log(res.slice(0,5)))
+          }).then(response => response.json()).then(res => console.log(res))
+        
         // console.log("Response",response)
         // const result =  await fetch('https://jsonplaceholder.typicode.com/todos')
         //   .then(response => response.json())
