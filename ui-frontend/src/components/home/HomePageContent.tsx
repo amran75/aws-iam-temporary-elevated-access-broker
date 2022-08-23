@@ -121,6 +121,7 @@ export function HomepageContent() {
     }
 
     const getAccountManagerInfo = async () => {
+        
         // const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
         //     method: 'GET',
         //     headers: {'Content-Type': 'application/json'}
